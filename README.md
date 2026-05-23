@@ -1,50 +1,104 @@
-
 # Supplementary Thermal Context Analysis
 
 ## Overview
 
-This repository contains the code and outputs used to generate **Supplementary Figure S1** and **Supplementary Table S1** accompanying a peer-reviewed manuscript currently under review.
+This repository contains the code, source data, and outputs used to generate **Supplementary Figure S1** and **Supplementary Table S1** accompanying a manuscript currently under peer review.
 
-The repository is intentionally anonymized for peer-review purposes.
+The repository is intentionally anonymized for review purposes.
 
-This project reconstructs **warm-season bottom-temperature dynamics** from field observations and translates them into an ecologically grounded thermal framework for experimental design.
+This workflow reconstructs **warm-season bottom-temperature dynamics from field observations** and uses these observations to establish an ecologically grounded thermal framework for experimental temperature selection.
 
-The workflow was developed to answer three questions:
+Specifically, the analysis addresses three questions:
 
 1. What temperatures naturally occur at the study site during the warm season?
-2. Is the selected ambient temperature biologically realistic?
-3. Does the simulated marine heatwave scenario reflect environmentally relevant warming?
+2. Is the selected ambient experimental temperature environmentally realistic?
+3. Does the simulated marine heatwave scenario reflect natural thermal conditions?
+
+---
+
+## Supplementary outputs
+
+### Supplementary Figure S1  
+Warm-season bottom-temperature dynamics reconstructed from field observations.
+
+![Supplementary Figure S1](Fig_S1_field_bottom_temperature_aligned.png)
+
+The figure illustrates:
+
+- observed daily bottom temperatures during warm seasons
+- the selected ambient experimental temperature (**27 °C**)
+- the simulated marine heatwave treatment (**31 °C**)
+- temporal clustering of warm periods
+- natural recovery intervals between warm events
+
+Grey shading indicates detected warm periods based on consecutive days above the ambient reference threshold.
+
+---
+
+### Supplementary Table S1  
+Summary statistics of warm-season thermal conditions.
+
+| Year | Mean (°C) | Max (°C) | Warm days ≥27 °C | Warm periods | Longest (d) | Mean length (d) |
+|------|------:|------:|------:|------:|------:|------:|
+| 2021 | 27.7 | 30.0 | 104 | 5 | 41 | 23 |
+| 2023 | 27.1 | 29.3 | 85 | 5 | 35 | 17 |
+
+These metrics summarize the temporal structure of natural warming and provide environmental context for selecting experimental thermal profiles.
+
+---
+
+## Data source
+
+Field temperature observations were obtained from the **Cape D’Aguilar monitoring station** through the Aqualink platform.
+
+Source:  
+https://aqualink.org/sites/2975
+
+Original downloaded file:
+
+`data_site_2975_2021_05_20_2026_03_30.csv`
+
+Data processing uses daily mean bottom-temperature observations to quantify warm-season thermal structure and derive environmentally relevant experimental conditions.
 
 ---
 
 ## Project concept
 
-Experimental studies often simplify thermal stress into fixed temperatures.
+Experimental thermal studies often simplify environmental stress into fixed temperature treatments.
 
-This workflow instead begins with **observed field temperatures** and derives experimental conditions from natural thermal structure.
+This workflow instead begins from **observed environmental conditions** and reconstructs thermal structure before experimental implementation.
 
-The analysis:
+Analysis pipeline:
 
+```text
 Field observations
-→ daily bottom temperature
-→ warm-period detection
-→ thermal summary metrics
-→ experimental temperature selection
+      ↓
+Daily bottom temperatures
+      ↓
+Warm-period detection
+      ↓
+Thermal summary metrics
+      ↓
+Experimental temperature selection
+```
 
 Outputs provide environmental justification for:
+
 - ambient baseline temperature
-- heatwave treatment temperature
-- duration and recovery logic
+- simulated heatwave temperature
+- warming duration
+- recovery structure
 
 ---
 
 ## Repository contents
 
-```
+```text
 .
 ├── FigS1_n_TableS1.R
 ├── Fig_S1_field_bottom_temperature_aligned.png
 ├── Table_S1_field_temperature_summary.csv
+├── data_site_2975_2021_05_20_2026_03_30.csv
 ├── README.md
 ```
 
@@ -54,80 +108,80 @@ Outputs provide environmental justification for:
 
 ### 1. Import and clean observations
 
-Purpose:
-Prepare bottom-temperature observations for analysis.
+Prepare bottom-temperature observations.
 
-Main operations:
-- import raw observations
-- convert dates
-- remove missing values
-- retain warm-season records
+Main steps:
+
+- import raw field records
+- convert timestamps
+- remove missing observations
+- retain warm-season data
 
 Output:
-clean daily dataset
+
+clean daily temperature series
 
 ---
 
 ### 2. Calculate daily thermal structure
 
-Purpose:
-Convert observations into ecological metrics.
+Convert observations into ecological descriptors.
 
 Calculations:
+
 - daily mean temperature
-- daily maximum
+- daily maximum temperature
 - warm-day classification
 
 Definition:
 
-Warm day:
-daily mean ≥ ambient threshold
+Warm day = daily mean ≥ ambient threshold
 
 Output:
+
 daily thermal time series
 
 ---
 
 ### 3. Detect warm periods
 
-Purpose:
-Describe temporal structure rather than isolated hot days.
+Describe temporal thermal structure.
 
 Rules:
 
-- minimum warm-event duration = 2 consecutive days
+- minimum warm-event duration = 2 days
 - short cool interruptions are merged
-- duration statistics are calculated
+- event durations are summarized
 
 Output:
-- number of warm periods
-- longest warm period
-- mean warm duration
+
+- warm-period count
+- longest event
+- average event duration
 
 ---
 
 ### 4. Generate Supplementary Figure S1
 
-Purpose:
-Visualize field temperature context.
+Visualize environmental thermal context.
 
-Figure layers:
+Figure components:
 
-- temperature trajectory
+- observed temperature trajectory
 - ambient reference line
-- simulated heatwave reference
+- simulated heatwave line
 - warm-period shading
 - threshold classification
 
 Output:
+
 publication-ready figure
 
 ---
 
 ### 5. Generate Supplementary Table S1
 
-Purpose:
-Summarize warm-season conditions.
+Summarize warm-season temperature conditions.
 
 Metrics:
 
@@ -136,9 +190,10 @@ Metrics:
 - warm days
 - warm periods
 - longest duration
-- mean duration
+- average duration
 
 Output:
+
 supplementary summary table
 
 ---
@@ -147,7 +202,7 @@ supplementary summary table
 
 Tested using:
 
-- R (4.4+)
+- R (≥ 4.4)
 - tidyverse
 - lubridate
 
@@ -155,6 +210,6 @@ Tested using:
 
 ## Notes
 
-This repository contains analysis code and supporting outputs only.
+This repository contains supplementary analysis code and environmental context outputs only.
 
-No identifying information, manuscript metadata, or review-sensitive details are included.
+No identifying author information, manuscript metadata, or review-sensitive materials are included.
