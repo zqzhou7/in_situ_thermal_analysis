@@ -6,7 +6,7 @@ This repository contains the code, source data, and outputs used to generate **S
 
 The repository is intentionally anonymized for review purposes.
 
-This workflow reconstructs **warm-season bottom-temperature variability** from field observations and uses these observations to provide environmental context for experimental thermal-profile design.
+This workflow reconstructs **warm-season bottom-temperature dynamics** from field observations and uses these observations to provide environmental context for experimental thermal-profile design.
 
 Specifically, the analysis addresses three questions:
 
@@ -51,10 +51,10 @@ These metrics summarize the temporal structure of natural warming and provide en
 
 ## Key observations
 
-- Mean warm-season bottom temperature was close to the selected ambient experimental reference of **27 °C**.
-- Daily mean bottom temperatures frequently exceeded **27 °C** during the warm season.
-- Warm periods occurred repeatedly and often persisted for multiple days to weeks.
-- These field observations support the use of temporally structured warming and recovery profiles in experimental thermal-stress studies.
+- Mean warm-season bottom temperature was approximately **27 °C**, supporting the selected ambient experimental reference.
+- Daily mean temperatures frequently exceeded the ambient threshold during the warm season.
+- Warm periods occurred repeatedly and often persisted for several days to weeks.
+- Field observations support incorporating temporal structure and recovery intervals into experimental thermal treatments.
 
 ---
 
@@ -96,7 +96,7 @@ Thermal summary metrics
 Experimental temperature selection
 ```
 
-Outputs provide environmental justification for:
+Outputs provide environmental context for:
 
 - ambient baseline temperature
 - simulated heatwave temperature
@@ -109,7 +109,7 @@ Outputs provide environmental justification for:
 
 ```text
 .
-├── FigS1_n_TableS1.R
+├── generate_S1_temperature_context.R
 ├── Fig_S1_field_bottom_temperature_aligned.png
 ├── Table_S1_field_temperature_summary.csv
 ├── data_site_2975_2021_05_20_2026_03_30.csv
@@ -120,10 +120,10 @@ Outputs provide environmental justification for:
 
 ## Reproducibility
 
-To reproduce the figure and summary table, run:
+To reproduce Supplementary Figure S1 and Supplementary Table S1:
 
 ```r
-source("FigS1_n_TableS1.R")
+source("generate_S1_temperature_context.R")
 ```
 
 Expected outputs:
@@ -263,6 +263,6 @@ Tested using:
 
 ## Notes
 
-This repository contains supplementary analysis code, source data, and environmental context outputs only.
+This repository contains supplementary analysis code, source data, and derived outputs used to contextualize experimental temperature selection.
 
 No author-identifying information, manuscript metadata, or review-sensitive materials are included.
